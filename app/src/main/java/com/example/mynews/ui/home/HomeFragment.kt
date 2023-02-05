@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.example.mynews.databinding.FragmentHomeBinding
+import com.example.mynews.ui.dashboard.recycleView.othernewsadapter
 import com.example.mynews.ui.dashboard.recycleView.selectoradapter
 
 class HomeFragment : Fragment() {
@@ -29,9 +30,8 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        recyclerViews()
 
-        binding.selectorChipsRecycler.layoutManager=LinearLayoutManager(requireContext(), HORIZONTAL,false)
-        binding.selectorChipsRecycler.adapter=selectoradapter(requireContext())
 
 
         return root
@@ -40,5 +40,12 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun recyclerViews(){
+        binding.selectorChipsRecycler.layoutManager=LinearLayoutManager(requireContext(), HORIZONTAL,false)
+        binding.selectorChipsRecycler.adapter=selectoradapter(requireContext())
+        binding.othernews.layoutManager=LinearLayoutManager(requireContext(), HORIZONTAL,false)
+        binding.othernews.adapter=othernewsadapter(requireContext())
     }
 }

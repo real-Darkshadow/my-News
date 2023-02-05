@@ -27,7 +27,7 @@
 
     <TextView
         android:text="Breaking!"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:textColor="@color/orange"
         android:fontFamily="@font/archivo_bold"
         android:textSize="40dp"
@@ -56,14 +56,14 @@
             android:fontFamily="@font/archivo_bold"
             android:text="@string/testtitle"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:text="Other News:"
         android:layout_marginTop="16dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:fontFamily="@font/archivo_bold"
         android:textColor="@color/orange"
         android:layout_width="wrap_content"
