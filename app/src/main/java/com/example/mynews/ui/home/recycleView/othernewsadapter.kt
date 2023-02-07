@@ -1,4 +1,4 @@
-package com.example.mynews.ui.dashboard.recycleView
+package com.example.mynews.ui.home.recycleView
 
 import android.content.Context
 import android.view.LayoutInflater
