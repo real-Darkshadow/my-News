@@ -4,11 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynews.R
+import com.example.mynews.ui.dashboard.apidata.countrydata
 
-class othernewsadapter(val context:Context): RecyclerView.Adapter<othernewsadapter.vhon>() {
+class othernewsadapter(val context: Context, datas: countrydata): RecyclerView.Adapter<othernewsadapter.vhon>() {
     inner class vhon(view:View):RecyclerView.ViewHolder(view){
 
     }
