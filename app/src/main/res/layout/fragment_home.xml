@@ -27,6 +27,9 @@
             android:scrollbars="none">
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
+                android:id="@+id/chgrp"
+                app:selectionRequired="true"
+                app:singleSelection="true"
                 android:layout_height="wrap_content">
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
