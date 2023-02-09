@@ -26,6 +26,8 @@ class HomeFragment : Fragment() {
     val url="https://newsapi.org"
     val api="59a52e4a1f1344ebbec722bba583bcdc"
     var datas:countrydata?=null
+    var sportsdata:countrydata?=null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +37,8 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.chgrp.
-        getapidata(cat = )
-
+        getapidata()
+        getsportsdata()
 
         return root
     }
@@ -51,19 +52,50 @@ class HomeFragment : Fragment() {
         binding.horiothernews.layoutManager=LinearLayoutManager(requireContext(), VERTICAL,false)
         binding.horiothernews.adapter= other_vertical_news_adapter(requireContext(),datas)
         binding.horiothernews.isNestedScrollingEnabled=true
+
+    }
+    fun recyclerViewsother(sportdata: countrydata){
         binding.othernews.layoutManager=LinearLayoutManager(requireContext(), HORIZONTAL,false)
-        binding.othernews.adapter= othernewsadapter(requireContext(),datas)
+        binding.othernews.adapter= othernewsadapter(requireContext(),sportdata)
     }
 
-    fun getapidata(con:String="in",cat:String="General"){
+    private fun getapidata(con:String="in", cat:String="General"){
         val retro=retrofit2.Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build()
         val service=retro.create(apidatanet::class.java)
-        val listcall: Call<countrydata> =service.getdata(con,cat)
+        val listcall: Call<countrydata> =service.getdata(con,cat, pageSize = 100)
         listcall.enqueue(object : Callback<countrydata> {
             override fun onResponse(call: Call<countrydata>, response: Response<countrydata>) {
                 if(response.isSuccessful){
                     datas=response.body()
                     recyclerViews(datas!!)
+                    Log.d("data", datas!!.articles.size.toString())
+                }
+                else{
+                    when(response.code()){
+                        400->{
+                            Log.i("Error 404", "Not Found")
+                        }
+                    }
+                }
+
+            }
+
+            override fun onFailure(call: Call<countrydata>, t: Throwable) {
+                Log.e("Errorr", t!!.message.toString())
+            }
+
+        })
+    }
+    fun getsportsdata(con:String="in",cat:String="sports"){
+        val retro=retrofit2.Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build()
+        val service=retro.create(apidatanet::class.java)
+        val listcall: Call<countrydata> =service.getdata(con,cat,100)
+        listcall.enqueue(object : Callback<countrydata> {
+            override fun onResponse(call: Call<countrydata>, response: Response<countrydata>) {
+                if(response.isSuccessful){
+                    sportsdata=response.body()
+                    recyclerViewsother(sportsdata!!)
+                    Log.d("dataaa",sportsdata!!.articles.size.toString())
                 }
                 else{
                     when(response.code()){

@@ -13,6 +13,7 @@
             android:layout_height="wrap_content">
         <ImageView
             android:src="@drawable/testimg"
+            android:id="@+id/imageot"
             android:scaleType="centerCrop"
             android:layout_width="191dp"
             android:layout_height="100dp"/>
@@ -21,11 +22,13 @@
             android:textColor="@color/black"
             android:fontFamily="@font/archivo_bold"
             android:textSize="12dp"
+            android:id="@+id/titleot"
             android:layout_width="191dp"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:textSize="10dp"
+            android:id="@+id/website"
             android:text="The Science Endeavors"
             android:layout_height="wrap_content"/>
         </LinearLayout>

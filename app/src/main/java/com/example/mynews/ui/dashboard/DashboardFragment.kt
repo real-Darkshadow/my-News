@@ -58,10 +58,10 @@ class DashboardFragment : Fragment() {
 
 
 
-    fun getapidata(con:String="in",cat:String="General"){
+    private fun getapidata(con:String="us", cat:String="business"){
         val retro=retrofit2.Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build()
         val service=retro.create(apidatanet::class.java)
-        val listcall: Call<countrydata> =service.getdata(con,cat)
+        val listcall: Call<countrydata> =service.getdata(con,cat,100)
         listcall.enqueue(object : Callback<countrydata> {
             override fun onResponse(call: Call<countrydata>, response: Response<countrydata>) {
                 if(response.isSuccessful){
@@ -84,6 +84,7 @@ class DashboardFragment : Fragment() {
 
         })
     }
+
 
 
 }

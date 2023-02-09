@@ -26,11 +26,11 @@ class countryadapter(val context:Context, val data: countrydata): RecyclerView.A
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.title.text=data.articles[position].title
-        if(data.articles[position].urlToImage==null){
-            holder.image.setImageResource(R.drawable.noimg)
+        if(data.articles[position].urlToImage!=null){
+            Picasso.get().load(data.articles[position].urlToImage).fit().centerCrop().error(R.drawable.noimg).into(holder.image)
         }
         else{
-        Picasso.get().load(data.articles[position].urlToImage).into(holder.image)
+            holder.image.setImageResource(R.drawable.noimg)
         }
     }
 }
