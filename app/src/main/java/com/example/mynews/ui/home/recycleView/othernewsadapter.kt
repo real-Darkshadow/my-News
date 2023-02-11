@@ -6,15 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynews.R
 import com.example.mynews.ui.dashboard.apidata.countrydata
+import com.example.mynews.ui.home.HomeFragmentDirections
 import com.squareup.picasso.Picasso
 
 class othernewsadapter(val context: Context, val datas: countrydata): RecyclerView.Adapter<othernewsadapter.vhon>() {
     inner class vhon(view:View):RecyclerView.ViewHolder(view){
         val image=view.findViewById<ImageView>(R.id.imageot)
         val title=view.findViewById<TextView>(R.id.titleot)
+        val view=view
+        val card=view.findViewById<CardView>(R.id.card)
         val channel=view.findViewById<TextView>(R.id.website)
     }
 
@@ -34,6 +39,10 @@ class othernewsadapter(val context: Context, val datas: countrydata): RecyclerVi
         }
         holder.title.text=datas.articles[position].title
         holder.channel.text=datas.articles[position].author
+        holder.card.setOnClickListener {
+            val action=HomeFragmentDirections.actionNavigationHomeToNewsDescription(datas.articles[position].title,datas.articles[position].urlToImage,datas.articles[position].description)
+            Navigation.findNavController(holder.view).navigate(action)
+        }
 
     }
 

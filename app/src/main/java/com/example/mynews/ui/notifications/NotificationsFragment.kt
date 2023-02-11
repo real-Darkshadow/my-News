@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mynews.databinding.FragmentNotificationsBinding
+import com.example.mynews.room.database
+import com.example.mynews.ui.notifications.recycler.save_adapter
 
 class NotificationsFragment : Fragment() {
 
@@ -27,11 +29,10 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val db=database.getDatabase(requireContext())
+        val k=db.dao().getnote()
+        binding.saverec.adapter=save_adapter(requireContext(),k)
+        binding.saverec.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         return root
     }
 

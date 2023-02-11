@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.mynews.R
 import com.example.mynews.databinding.FragmentProfileBinding
+import com.example.mynews.ui.home.HomeFragment
 
 class profile : Fragment() {
     private  var _binding:FragmentProfileBinding?=null

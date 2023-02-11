@@ -6,15 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynews.R
+import com.example.mynews.ui.dashboard.DashboardFragmentDirections
 import com.example.mynews.ui.dashboard.apidata.countrydata
+import com.example.mynews.ui.home.HomeFragmentDirections
 import com.squareup.picasso.Picasso
 
 class countryadapter(val context:Context, val data: countrydata): RecyclerView.Adapter<countryadapter.viewholder>() {
     inner class viewholder(view: View):RecyclerView.ViewHolder(view){
         val title=view.findViewById<TextView>(R.id.title)
         val image=view.findViewById<ImageView>(R.id.image)
+        val view=view
+        val card=view.findViewById<CardView>(R.id.card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
@@ -31,6 +37,10 @@ class countryadapter(val context:Context, val data: countrydata): RecyclerView.A
         }
         else{
             holder.image.setImageResource(R.drawable.noimg)
+        }
+        holder.card.setOnClickListener {
+            val action= DashboardFragmentDirections.actionNearMeToNewsDescription(data.articles[position].title,data.articles[position].urlToImage,data.articles[position].description)
+            Navigation.findNavController(holder.view).navigate(action)
         }
     }
 }

@@ -37,8 +37,11 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        getapidata()
         getsportsdata()
+        getapidata()
+//        binding.chgrp.setOnCheckedStateChangeListener { group, checkedIds ->
+//            val suggestion=group.findViewById<Chip>(checkedIds)
+//        }
 
         return root
     }
@@ -113,4 +116,6 @@ class HomeFragment : Fragment() {
 
         })
     }
+
+
 }

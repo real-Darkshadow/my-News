@@ -7,14 +7,14 @@
         android:title="News" />
 
     <item
-        android:id="@+id/near_Me"
+        android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Near Me" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="Saved" />
 
     <item
         android:id="@+id/profile_nav"
